@@ -1,0 +1,38 @@
+<div><app-quotation></app-quotation></div>
+<div style="margin-left: 20px;">
+  <h1>Comprar Moneda</h1>
+</div>
+<div style="margin-left: 20px; display: inline-flex;">
+  <form class="form-form" #f="ngForm">
+    <mat-form-field class="form-full-width">
+      <mat-label>Usuario</mat-label>
+      <input matInput placeholder="Ej. UserName" name="idUser" ngModel required [(ngModel)]="model.idUser">
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <mat-label>Moneda</mat-label>
+      <mat-select ngModel required name="unit" [(ngModel)]="model.unit">
+        <mat-option value="dolar">Dolar</mat-option>
+        <mat-option value="real">Real</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <mat-label> Monto en pesos</mat-label>
+      <input matInput placeholder="Ej. 1000" name="amount" ngModel required [(ngModel)]="model.amount">
+    </mat-form-field>
+    <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+    <br>
+    <button mat-raised-button color="primary" (click)="Purchase()" *ngIf="!showProgressBar" [disabled]="f.invalid">Comprar</button>
+  </form>
+  <mat-card class="card" *ngIf="purchaseResponce || purchaseError">
+    <mat-card-title *ngIf="purchaseError">Error al realizar compra</mat-card-title>
+    <mat-card-content *ngIf="purchaseError"> {{ errorMessage.error }} </mat-card-content>
+    <mat-card-title *ngIf="purchaseResponce && !purchaseError">Compra exitosa</mat-card-title>
+    <mat-list role="list" *ngIf="purchaseResponce && !purchaseError">
+      <mat-list-item role="listitem">Transaccion Nro: {{ purchaseResponce.idPurchase }}</mat-list-item>
+      <mat-list-item role="listitem">Monto Pesos: {{ purchaseResponce.amount }}</mat-list-item>
+      <mat-list-item role="listitem">Monto {{ purchaseResponce.unit}}: {{ purchaseResponce.amountTo }}</mat-list-item>
+      <mat-list-item role="listitem">Cotizacion: {{ purchaseResponce.currencyRate }}</mat-list-item>
+      <mat-list-item role="listitem">Fecha: {{ purchaseResponce.purchaseDate | date:'dd/MM/yyyy HH:mm' }}</mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>

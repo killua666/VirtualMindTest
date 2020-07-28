@@ -1,0 +1,15 @@
+
+IF OBJECT_ID(N'InteCCabecerEdsaAudit', 'U') IS NULL
+BEGIN
+CREATE TABLE Purchase (
+	IdPurchase      BIGINT IDENTITY(1,1) NOT NULL,
+	IdUser			VARCHAR(50) NOT NULL,
+	Amount			DECIMAL(20,4) NOT NULL,
+	AmountTo		DECIMAL(20,4) NULL,
+	Unit			VARCHAR(200) NULL,
+	CurrencyRate	DECIMAL(20,4) NULL,
+	PurchaseDate	DATETIME NULL,
+	CONSTRAINT [PK_Purchase_IdPurchase] PRIMARY KEY CLUSTERED ([IdPurchase] ASC)
+	
+)
+END

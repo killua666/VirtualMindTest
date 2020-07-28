@@ -1,0 +1,25 @@
+<div style="margin: 20px; height: 170px; display: inline-flex;">
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+  <button mat-mini-fab color="primary" style="margin-top: 4px;" (click)="getQuotations()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <mat-tab-group >
+    <mat-tab label="Dolar" routerLinkActive="router-link-active">
+      <mat-progress-bar style="padding-top: 10px;" *ngIf="!quotationDolar" mode="indeterminate"></mat-progress-bar>
+      <div *ngIf="quotationDolar">
+        <h4>Compra:  {{ quotationDolar.buy }}</h4>
+        <h4>Venta: {{ quotationDolar.sell }}</h4>
+        <h4>Fecha:  {{quotationDolar.updateDate }}</h4>
+      </div>
+    </mat-tab>
+    <mat-tab label="Real"  routerLinkActive="router-link-active">
+      <mat-progress-bar style="padding-top: 5px;" *ngIf="!quotationReal" mode="indeterminate"></mat-progress-bar>
+      <div *ngIf="quotationReal">
+        <h4>Compra:  {{ quotationReal.buy }}</h4>
+        <h4>Venta: {{ quotationReal.sell }}</h4>
+        <h4>Fecha: {{ quotationReal.updateDate }}</h4>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
